@@ -1,0 +1,135 @@
+.head-title{
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+.form-add-peroduct{
+    width: 100%;
+    background-color: var(--bgwhite);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: rgba(149,157,165,0.2) 0px 8px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+}
+
+
+.input-groups{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+}
+
+.input{
+    display: flex;
+    align-items: center;
+    background-color: var(--bgprimary);
+    border-radius: 0.5rem;
+}
+.input input{
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0.5rem;
+    background-color: unset;
+    font-size: 1.2rem;
+}
+.input i{
+  color: var(--bgblack2);  
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.btn{
+    cursor: pointer;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color: var(--bgwhite);
+    background: var(--bgblack2);
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 2rem 0;
+}
+
+.table-products{
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: var(--bgwhite);
+    box-shadow: rgba(149,157,165,0.2) 0px 8px 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.table-products th {
+    padding: 1.5rem;
+}
+.table-products td img {
+    display: flex;
+}
+.table-head-products{
+    padding: 0 5rem 0 28rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bgblack2);
+    color: var(--bgwhite);
+    border-radius: 2rem;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+
+
+.table-row-products{
+    margin-top: 0.5rem;
+    padding: 1rem 2rem 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid black;
+    transition: all ease-in 0.2s;
+}
+.table-row-products:hover{
+    background-color: var(--bgprimary);
+}
+
+.table-img{
+    width: 150px;
+    border-radius:2rem ;
+    border-bottom-left-radius: 0;
+}
+
+.table-button{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.table-button .btn{
+    padding: 0.5rem 1rem;
+}
+
+@media screen and (max-width:780px) {
+
+    .head-title{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .form-add-peroduct{
+        padding: 1rem;
+    }
+
+    .input-groups{
+        grid-template-columns: 1fr;
+        gap: 2rem;
+
+    }
+
+}

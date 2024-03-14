@@ -1,0 +1,9 @@
+.error-continer{
+    background-color: red;
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
