@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Products.css"
 import Errorbox from '../Errorbox/Errorbox'
 import DeleteModal from '../DeleteModal/DeleteModal'
@@ -7,6 +7,23 @@ export default function Products() {
 
   const [showDeleteModal,setShowDeleteModal] = useState(false)
   const [showDetailModal,setShowDetailModal] = useState(false)
+  const [allProducts,setAllProducts] = useState([])
+
+
+
+
+  useEffect(()=>{
+
+    GetProducts()
+  },[])
+
+  const GetProducts= ()=>{
+
+    fetch('http://127.0.0.1:8000/products/')
+    .then(res=>res.json())
+    .then(data=>setAllProducts(data))
+  }
+
 
   const submitAction = ()=>{
     console.log('Submited');
@@ -69,7 +86,35 @@ export default function Products() {
           </tr>
         </thead>
         <tbody>
+          {allProducts.length?(
+            
+            allProducts.map(product=>{
+              return(
+                <tr className='table-row-products'>
+                <td>
+                  <img src={`http://127.0.0.1:8000/${product.image}`} alt=""  className='table-img'/>
+                </td>
+                <td>{product.title}</td>
+                <td>{product.price} تومان</td>
+                <td>{product.count}</td>
+                <td className='table-button'>
+                  <button className='btn' onClick={()=>setShowDetailModal(true)}>جرییات</button>
+                  <button className='btn' onClick={()=>setShowDeleteModal(true)}>حذف</button>
+                  <button className='btn'>ویرایش</button>
+    
+                </td>
+    
+                </tr>
+  
+              )
+  
+            })
+          ):(
 
+          <Errorbox msg={'هیچ محصولی یافت نشد'}></Errorbox>
+          )}
+
+{/* 
           <tr className='table-row-products'>
             <td>
               <img src='/Image/about-img.jpg' alt=""  className='table-img'/>
@@ -84,26 +129,10 @@ export default function Products() {
 
             </td>
 
-          </tr>
-          <tr className='table-row-products'>
-            <td>
-              <img src='/Image/about-img.jpg' alt=""  className='table-img'/>
-            </td>
-            <td>روغن</td>
-            <td>20000 تومان</td>
-            <td>26</td>
-            <td className='table-button'>
-              <button className='btn' onClick={()=>setShowDetailModal(true)}>جرییات</button>
-              <button className='btn' onClick={()=>setShowDeleteModal(true)}>حذف</button>
-              <button className='btn'>ویرایش</button>
-
-            </td>
-
-          </tr>
+          </tr> */}
         </tbody>
       </table>
 
-      <Errorbox msg={'هیچ محصولی یافت نشد'}></Errorbox>
       <DeleteModal submitAction={submitAction} cancelAction={cancelAction} action={showDeleteModal}></DeleteModal>
 
       {showDetailModal&& <DetailModal onHide={hideControler} action={showDetailModal}></DetailModal>}
