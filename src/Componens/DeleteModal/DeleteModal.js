@@ -15,3 +15,5 @@ export default function DeleteModal({submitAction,cancelAction,action}) {
         </div>
   ,document.getElementById('modal-container'))
 }
+
+
