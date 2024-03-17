@@ -2,12 +2,11 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import "./DetailModal.css"
  
-export default function DetailModal({action,onHide}) {
+export default function DetailModal({data,action,onHide}) {
     useEffect(()=>{
 
 
         const keyHandeler = (e)=>{
-            console.log(e);
             if(e.keyCode===27){
                 onHide()
             }
@@ -18,9 +17,7 @@ export default function DetailModal({action,onHide}) {
 
             window.addEventListener('keydown',keyHandeler)
         }
-        console.log("M");
       return ()=>{
-        console.log('unmounted');
         window.removeEventListener('keydown',keyHandeler)
       }
     })
@@ -29,15 +26,15 @@ export default function DetailModal({action,onHide}) {
             <div className='detail-modal'>
                 <div>
                     <h3>محبوبیت</h3>
-                    <small>91</small>
+                    <small>{data.popularity}%</small>
                 </div>
                 <div>
                     <h3>تعداد فروش</h3>
-                    <small>65</small>
+                    <small>{data.sale}</small>
                 </div>
                 <div>
-                    <h3>عدم رضایت</h3>
-                    <small>50</small>
+                    <h3>تعداد رنگ ها</h3>
+                    <small>{data.colors}</small>
                 </div>
 
             </div>

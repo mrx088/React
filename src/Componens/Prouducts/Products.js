@@ -22,9 +22,14 @@ export default function Products() {
   const[image,setImage]= useState('')
 
 
+  const[newTitle,setNewTitle] = useState('')
+  const[newCount,setNewCount] = useState('')
+  const[newColors,setNewColors] = useState('')
+  const[newSale,setNewSale] = useState('')
+  const[newPrice,setNewPrice] = useState('')
+  const[newPopularity,setNewPopularity] = useState('')
 
-
-
+  
   useEffect(()=>{
 
     GetProducts()
@@ -39,8 +44,13 @@ export default function Products() {
 
 
   const submitAction = ()=>{
-    console.log('Submited');
-    setShowDeleteModal(false)
+    fetch(`http://127.0.0.1:8000/product/delete/${id}`,{
+      method:'DELETE'
+    }).then(res=>res.json())
+    .then(()=>{
+      GetProducts()
+      setShowDeleteModal(false)
+    })
   }
 
   function cancelAction(){
@@ -99,38 +109,76 @@ export default function Products() {
     console.log('EDit Canceld');
     setShowEditModal(false)
   }
+
+
+
+  const CreateProduct = (e)=>{
+    e.preventDefault()
+    let NewProduct = {
+      title:newTitle,
+      price:Number(newPrice),
+      count:Number(newCount),
+      popularity:Number(newPopularity),
+      colors:Number(newColors),
+      sale:Number(newSale),
+    }
+
+    fetch('http://127.0.0.1:8000/product/create/',{
+      method:"POST",
+      headers :{
+        'Content-Type':'application/json'
+      },
+      body : JSON.stringify(NewProduct)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      EmptyInputs()
+      GetProducts()
+    })
+  }
+
+
+  function EmptyInputs(){
+    setNewTitle('')
+    setNewCount('')
+    setNewColors('')
+    setNewSale('')
+    setNewPrice('')
+    setNewPopularity('')
+
+  }
   return (
     <div>
       <h3 className='head-title'>افزودن محصول جدید </h3>
-      <form action="#" className='form-add-peroduct'>
+      <form action="#" className='form-add-peroduct' onSubmit={(e)=>CreateProduct(e)}>
         <div className="input-groups">
           <div className="input">
             <i className="bi bi-cursor-text"></i>
-            <input type="text"   placeholder='اسم محصول را بنویسید'/>
+            <input type="text" value={newTitle} onChange={(e)=>setNewTitle(e.target.value)} placeholder='اسم محصول را بنویسید'/>
           </div>
           <div className="input">
             <i className="bi bi-currency-dollar"></i>
-            <input type="text" placeholder='قیمت محصول را بنویسید'/>
+            <input type="text" value={newPrice} onChange={(e)=>setNewPrice(e.target.value)} placeholder='قیمت محصول را بنویسید'/>
           </div>
-          <div className="input">
+          {/* <div className="input">
             <i className="bi bi-image"></i>
-            <input type="file" accept="image/jpeg,image/png,image/gif" placeholder='آدرس عکس محصول را بنویسید'/>
-          </div>
+            <input type="file" value={newTitle} onChange={(e)=>setNewTitle(e.target.value)} accept="image/jpeg,image/png,image/gif" placeholder='آدرس عکس محصول را بنویسید'/>
+          </div> */}
           <div className="input">
             <i className="bi bi-star-fill"></i>
-            <input type="text"  placeholder='میزان محبوبیت محصول را بنویسید'/>
+            <input type="text"  value={newPopularity} onChange={(e)=>setNewPopularity(e.target.value)} placeholder='میزان محبوبیت محصول را بنویسید'/>
           </div>
           <div className="input">
             <i className="bi bi-kanban"></i>
-            <input type="text"  placeholder='موجودی محصول را بنویسید'/>
+            <input type="text"  value={newCount} onChange={(e)=>setNewCount(e.target.value)} placeholder='موجودی محصول را بنویسید'/>
           </div>
           <div className="input">
             <i className="bi bi-palette-fill"></i>
-            <input type="text"  placeholder='تعداد رنگ بندی محصول را بنویسید'/>
+            <input type="text"  value={newColors} onChange={(e)=>setNewColors(e.target.value)} placeholder='تعداد رنگ بندی محصول را بنویسید'/>
           </div>
           <div className="input">
             <i className="bi bi-wallet2"></i>
-            <input type="text"  placeholder='میزان فروش محصول را بنویسید'/>
+            <input type="text"  value={newSale} onChange={(e)=>setNewSale(e.target.value)} placeholder='میزان فروش محصول را بنویسید'/>
           </div>
         </div>
         <button type="submit" className='btn'>ثبت محصول</button>
@@ -152,18 +200,24 @@ export default function Products() {
             allProducts.map(product=>{
               return(
                 <tr key={product.id} className='table-row-products'>
-                <td>
-                  <img src={`http://127.0.0.1:8000/${product.image}`} alt=""  className='table-img'/>
-                </td>
-                <td>{product.title}</td>
-                <td>{product.price} تومان</td>
-                <td>{product.count}</td>
-                <td className='table-button'>
-                  <button className='btn' onClick={()=>setShowDetailModal(true)}>جرییات</button>
-                  <button className='btn' onClick={()=>setShowDeleteModal(true)}>حذف</button>
-                  <button className='btn' onClick={()=>EditHandeler(product)}>ویرایش</button>
-    
-                </td>
+                  <td>
+                    <img src={product.image?(`http://127.0.0.1:8000/${product.image}`):("./Image/empty.jpg")} alt=""  className='table-img'/>
+                  </td>
+                  <td>{product.title}</td>
+                  <td>{product.price} تومان</td>
+                  <td>{product.count}</td>
+                  <td className='table-button'>
+                    <button className='btn' onClick={()=>{
+                      setPrimaryProduct(product)
+                      setShowDetailModal(true)
+                      }}>جرییات</button>
+                    <button className='btn' onClick={()=>{
+                      setID(product.id)
+                      setShowDeleteModal(true)
+                      }}>حذف</button>
+                    <button className='btn' onClick={()=>EditHandeler(product)}>ویرایش</button>
+      
+                  </td>
     
                 </tr>
   
@@ -171,8 +225,14 @@ export default function Products() {
   
             })
           ):(
+            <tr>
 
-          <Errorbox msg={'هیچ محصولی یافت نشد'}></Errorbox>
+              <td>
+                
+                <Errorbox msg={'هیچ محصولی یافت نشد'}></Errorbox>
+              </td>
+            </tr>
+
           )}
 
         </tbody>
@@ -180,7 +240,7 @@ export default function Products() {
 
       <DeleteModal submitAction={submitAction} cancelAction={cancelAction} action={showDeleteModal}></DeleteModal>
 
-      {showDetailModal&& <DetailModal onHide={hideControler} action={showDetailModal}></DetailModal>}
+      {showDetailModal&& <DetailModal data={primaryProduct} onHide={hideControler} action={showDetailModal}></DetailModal>}
       
       
       <EditModal data={primaryProduct} action={showEditModal}>
