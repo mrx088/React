@@ -3,6 +3,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: vaziri;
+
 }
 
 @font-face {
@@ -17,7 +18,11 @@
 
 
 }
+body{
+  font-family: vaziri;
 
+
+}
 :root{
   --bgblack : #000000;
   --bgblack2 : #14213d;
