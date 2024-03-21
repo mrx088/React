@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import "./Comments.css"
 import Errorbox from '../Errorbox/Errorbox'
+import DetailModal from '../DetailModal/DetailModal'
+import DeleteModal from '../DeleteModal/DeleteModal'
 export default function Comments() {
 
   const[allComments,setAllComments] = useState([])
+  const[isShowDetailModal,setIsShowDetailModal] = useState(false)
+  const[isShowDeleteModel,setIsShowDeleteModal] = useState(false)
+  const[isShowEditModel,setIsShowEditModal] = useState(false)
+  const[commnetBody,setCommentBody] = useState('')
+  const[commentID,setCommentID] = useState(null)
 
   const GetComments =()=>{
     fetch('http://127.0.0.1:8000/accounts/comments/')
@@ -14,6 +21,55 @@ export default function Comments() {
     GetComments()
 
   },[])
+
+  function modalHidden (){
+    setIsShowDetailModal(false)
+  }
+
+
+  const deleteModalCancel=()=>{
+    setIsShowDeleteModal(false)
+  }
+  const deleteComment=()=>{
+    fetch(`http://127.0.0.1:8000/accounts/comment/delete/${commentID}/`,{
+      method:"DELETE"
+    })
+    .then(res=>res.json())
+    .then(()=>{
+      GetComments()
+      setIsShowDeleteModal(false)
+
+    })
+  }
+
+  
+  const modalEditHidden=()=>{
+    setIsShowEditModal(false)
+  }
+  
+  const modalEdit=()=>{
+    let newData = {
+      body: commnetBody
+    }
+    fetch(`http://127.0.0.1:8000/accounts/comment/update/${commentID}/`,{
+      method:"PUT",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization": 'Token 0e70a436403b6ed0ef5495a1699e1197c88c9e04'
+      },
+      body:JSON.stringify(newData),
+      
+    })
+    .then(res=>res.json())
+    .then(()=>{
+      GetComments()
+      setIsShowEditModal(false)
+
+    })
+  }
+
+  
+  
   return (
     <div>
 
@@ -23,7 +79,7 @@ export default function Comments() {
             <tr>
               <th>نام</th>
               <th>ایمیل</th>
-              <th>کامنت</th>
+              <th>تاریخ/ساعت</th>
               <th></th>
             </tr>
           </thead>
@@ -31,14 +87,35 @@ export default function Comments() {
           {allComments.map(comment=>{
             return(
 
-            <tr>
+            <tr key={comment.id}>
               <td>{comment.user.username}</td>
               <td>{comment.user.email}</td>
-              <td>{comment.body}</td>
+              <td className='date-time'>
+                <span>
+                  {comment.created}
+                  <i className="bi bi-calendar3"></i>
+
+                </span>
+                <span>
+                  {comment.hour}
+                  <i className="bi bi-clock-fill"></i>
+
+                </span>
+              </td>
               <td className='comment-btn-container'>
-                <button className='btn-show'>نمایش</button>
-                <button className='btn-edit'>ویرایش</button>
-                <button className='btn-del'>حذف</button>
+                <button className='btn-show' onClick={()=>{
+                  setCommentBody(comment.body)
+                  setIsShowDetailModal(true)
+                }}>نمایش</button>
+                <button className='btn-edit' onClick={()=>{
+                  setCommentID(comment.id)
+                  setCommentBody(comment.body)
+                  setIsShowEditModal(true)
+                }}>ویرایش</button>
+                <button className='btn-del' onClick={()=>{
+                  setIsShowDeleteModal(true)
+                  setCommentID(comment.id)
+                }}>حذف</button>
               </td>
             </tr>
             )
@@ -51,6 +128,18 @@ export default function Comments() {
     )
     
   } 
+  <DetailModal onHide={modalHidden} action={isShowDetailModal}>
+      <p>{commnetBody}</p>
+  </DetailModal>
+
+  <DetailModal onHide={modalEditHidden} action={isShowEditModel}>
+      <textarea name="" id="" cols="30" rows="10" value={commnetBody} onChange={(e)=>setCommentBody(e.target.value)}></textarea>
+      <button onClick={modalEdit} className='btn-edit'>ویرایش</button>
+  </DetailModal>
+
+  <DeleteModal submitAction={deleteComment} cancelAction={deleteModalCancel} action={isShowDeleteModel} title={'آيا از حذف اطمینان دازید ؟'} ></DeleteModal>
+    
+    
 
 
       

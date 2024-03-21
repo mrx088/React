@@ -27,29 +27,31 @@
     font-size: 1.5rem;
     margin-top: 3rem;
   }
-  .sidebar-link{
-    color: var(--bgprimary);
+  /* .sidebar-link{
     padding: 1rem 0;
     display: inline-block;
-  }
+  } */
   
-  .sidebar-link li{
+  .sidebar-link{
+    color: var(--bgprimary);
     padding: 0.5rem 2rem;
     display: inline;
-    transition: all ease-in 0.4s;
+    transition: all ease-in 0.2s;
     border-radius: 2rem;
   }
   
-  .sidebar-link li:hover{
+  .sidebar-link:hover{
     background-color: var(--bgblack);
   }
   
-  .sidebar-link li.active{
+  .active{
     background-color: var(--bgyellow);
   
   }
-  
-  .sidebar-link li i{
+  .sidebar-link{
+    display: block;
+  }
+  a i{
     margin-left: 1rem;
     font-weight: 700;
   }

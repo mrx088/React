@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import "./DetailModal.css"
  
-export default function DetailModal({data,action,onHide}) {
+export default function DetailModal({data,action,onHide,children}) {
     useEffect(()=>{
 
 
@@ -24,19 +24,8 @@ export default function DetailModal({data,action,onHide}) {
   return  ReactDOM.createPortal(    
         <div  className={`modal-cont ${action?"active":''}`}>
             <div className='detail-modal'>
-                <div>
-                    <h3>محبوبیت</h3>
-                    <small>{data.popularity}%</small>
-                </div>
-                <div>
-                    <h3>تعداد فروش</h3>
-                    <small>{data.sale}</small>
-                </div>
-                <div>
-                    <h3>تعداد رنگ ها</h3>
-                    <small>{data.colors}</small>
-                </div>
-
+                {children}
+                <button className='close-btn' onClick={onHide}>بستن</button>
             </div>
         </div>
   ,document.getElementById('modal-container'))

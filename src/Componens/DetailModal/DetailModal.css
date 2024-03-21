@@ -2,14 +2,32 @@
 .detail-modal {
     background-color: var(--bgprimary);
     width: 25%;
-    height: 25%;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
+    gap: 1rem;
 }
 .detail-modal div{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.detail-modal button{
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border: none;
+    color: var(--bgwhite);
+    cursor: pointer;
+}
+
+.btn-edit{
+    background-color: var(--bgyellow);
+}
+.close-btn{
+    background-color: var(--bgblack2);
+
 }

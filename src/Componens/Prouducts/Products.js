@@ -238,9 +238,25 @@ export default function Products() {
         </tbody>
       </table>
 
-      <DeleteModal submitAction={submitAction} cancelAction={cancelAction} action={showDeleteModal}></DeleteModal>
+      <DeleteModal title={"ایا از حذف اطمینان دارید ؟"} submitAction={submitAction} cancelAction={cancelAction} action={showDeleteModal}></DeleteModal>
 
-      {showDetailModal&& <DetailModal data={primaryProduct} onHide={hideControler} action={showDetailModal}></DetailModal>}
+      {showDetailModal&& 
+      <DetailModal data={primaryProduct} onHide={hideControler} action={showDetailModal}>
+        
+                <div>
+                    <h3>محبوبیت</h3>
+                    <small>{primaryProduct.popularity}%</small>
+                </div>
+                <div>
+                    <h3>تعداد فروش</h3>
+                    <small>{primaryProduct.sale}</small>
+                </div>
+                <div>
+                    <h3>تعداد رنگ ها</h3>
+                    <small>{primaryProduct.colors}</small>
+                </div>
+        
+      </DetailModal>}
       
       
       <EditModal data={primaryProduct} action={showEditModal}>

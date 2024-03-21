@@ -19,8 +19,8 @@ function App() {
             <div className="user-img"></div>
             </div>
             <div className="user-info">
-              <h4>ایمان علی رزایی</h4>
-              <h5>معمار</h5>
+              <h4>Ali Yousefi</h4>
+              <h5>Backend&Frontend</h5>
             </div>
           </div>
   
