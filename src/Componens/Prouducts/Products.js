@@ -37,14 +37,14 @@ export default function Products() {
 
   const GetProducts= ()=>{
 
-    fetch('http://127.0.0.1:8000/products/')
+    fetch('http://unknown88.pythonanywhere.com/products/')
     .then(res=>res.json())
     .then(data=>setAllProducts(data))
   }
 
 
   const submitAction = ()=>{
-    fetch(`http://127.0.0.1:8000/product/delete/${id}`,{
+    fetch(`http://unknown88.pythonanywhere.com/product/delete/${id}`,{
       method:'DELETE'
     }).then(res=>res.json())
     .then(()=>{
@@ -90,7 +90,7 @@ export default function Products() {
       sale:Number(sale)
     }
 
-    fetch(`http://127.0.0.1:8000/product/${id}/`,{
+    fetch(`http://unknown88.pythonanywhere.com/product/${id}/`,{
       method : 'PUT',
       headers:{
         "Content-Type":"application/json",
@@ -123,7 +123,7 @@ export default function Products() {
       sale:Number(newSale),
     }
 
-    fetch('http://127.0.0.1:8000/product/create/',{
+    fetch('http://unknown88.pythonanywhere.com/product/create/',{
       method:"POST",
       headers :{
         'Content-Type':'application/json'
@@ -201,7 +201,7 @@ export default function Products() {
               return(
                 <tr key={product.id} className='table-row-products'>
                   <td>
-                    <img src={product.image?(`http://127.0.0.1:8000/${product.image}`):("./Image/empty.jpg")} alt=""  className='table-img'/>
+                    <img src={product.image?(`http://unknown88.pythonanywhere.com/${product.image}`):("./Image/empty.jpg")} alt=""  className='table-img'/>
                   </td>
                   <td>{product.title}</td>
                   <td>{product.price} تومان</td>
@@ -275,12 +275,12 @@ export default function Products() {
 
                     </div>
                     <div className="input-container">
-                        <i className="bi bi-cursor-text"></i>
+                        <i className="bi bi-currency-dollar"></i>
                         <input type="text" onChange={(e)=>setPrice(e.target.value)} value={price}/>
 
                     </div>
                     <div className="input-container">
-                        <i className="bi bi-cursor-text"></i>
+                        <i className="bi bi-kanban"></i>
                         <input type="text" onChange={(e)=>setCount(e.target.value)} value={count}/>
 
                     </div>
@@ -288,19 +288,19 @@ export default function Products() {
                         <i className="bi bi-cursor-text"></i>
                         <input type="file" accept="image/jpeg,image/png,image/gif" />
 
-                    </div> */}
+                      </div> */}
                     <div className="input-container">
-                        <i className="bi bi-cursor-text"></i>
+                        <i className="bi bi-star-fill"></i>
                         <input type="text" onChange={(e)=>setPopularity(e.target.value)} value={popularity}/>
 
                     </div>
                     <div className="input-container">
-                        <i className="bi bi-cursor-text"></i>
+                        <i className="bi bi-palette-fill"></i>
                         <input type="text" onChange={(e)=>setColors(e.target.value)} value={colors}/>
 
                     </div>
                     <div className="input-container">
-                        <i className="bi bi-cursor-text"></i>
+                      <i className="bi bi-wallet2"></i>
                         <input type="text" onChange={(e)=>setSale(e.target.value)} value={sale}/>
 
                     </div>

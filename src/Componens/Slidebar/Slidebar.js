@@ -15,11 +15,11 @@ export default function Slidebar() {
             داشبورد
             </li>
         </Link> */}
-        <NavLink to="/products" className="sidebar-link">
+        <NavLink to="/products" className={(link)=>link.isActive?'sidebar-link active2':'sidebar-link'}>
             <i className="bi bi-bag"></i>
             محصولات
         </NavLink>
-        <NavLink to='/comments' className="sidebar-link">
+        <NavLink to='/comments' className={(link)=>link.isActive?'sidebar-link active2':'sidebar-link'}>
             <i className="bi bi-chat-left-text"></i>
                 کامنت ها
         </NavLink>

@@ -13,7 +13,7 @@ export default function Comments() {
   const[commentID,setCommentID] = useState(null)
 
   const GetComments =()=>{
-    fetch('http://127.0.0.1:8000/accounts/comments/')
+    fetch('http://unknown88.pythonanywhere.com/accounts/comments/')
     .then(res=>res.json())
     .then(data=>setAllComments(data))
   }
@@ -31,7 +31,7 @@ export default function Comments() {
     setIsShowDeleteModal(false)
   }
   const deleteComment=()=>{
-    fetch(`http://127.0.0.1:8000/accounts/comment/delete/${commentID}/`,{
+    fetch(`http://unknown88.pythonanywhere.com/accounts/comment/delete/${commentID}/`,{
       method:"DELETE"
     })
     .then(res=>res.json())
@@ -51,7 +51,7 @@ export default function Comments() {
     let newData = {
       body: commnetBody
     }
-    fetch(`http://127.0.0.1:8000/accounts/comment/update/${commentID}/`,{
+    fetch(`http://unknown88.pythonanywhere.com/accounts/comment/update/${commentID}/`,{
       method:"PUT",
       headers:{
         "Content-Type":"application/json",
