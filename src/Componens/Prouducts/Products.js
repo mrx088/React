@@ -4,6 +4,7 @@ import Errorbox from '../Errorbox/Errorbox'
 import DeleteModal from '../DeleteModal/DeleteModal'
 import DetailModal from '../DetailModal/DetailModal'
 import EditModal from '../EditModal/EditModal'
+
 export default function Products() {
 
   const [showDeleteModal,setShowDeleteModal] = useState(false)
@@ -192,6 +193,7 @@ export default function Products() {
             <th>نام</th>
             <th>قیمت</th>
             <th>موجودی</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -311,6 +313,7 @@ export default function Products() {
 
 
       </EditModal>
+
       
        
       

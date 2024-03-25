@@ -68,3 +68,11 @@
     color: white;
     cursor: pointer;
 }
+
+
+@media screen and (max-width:600px) {
+    .edit-modal{
+        width: auto;
+    }
+    
+  }

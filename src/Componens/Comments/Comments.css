@@ -39,6 +39,7 @@
 
 
 .comment-table td,th {
+    overflow: scroll;
     width: 25%;
     text-align: center;
 }
@@ -52,7 +53,7 @@
 }
 .comment-btn-container button{
     border: none;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     color: white;
     cursor: pointer;
@@ -91,3 +92,20 @@ textarea{
     resize: none;
 }
 
+
+
+@media screen and (max-width:1500px) {
+    .comment-btn-container{
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .comment-btn-container button{
+        padding: 0.5rem;
+    }
+
+    thead{
+        font-size: 0.8rem;
+    }
+    
+}

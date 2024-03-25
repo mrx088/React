@@ -31,3 +31,10 @@
     background-color: var(--bgblack2);
 
 }
+
+@media screen and (max-width:1040px) {
+    .detail-modal{
+        width: auto;
+    }
+    
+}

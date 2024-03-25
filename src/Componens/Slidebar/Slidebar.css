@@ -33,6 +33,7 @@
   } */
   
   .sidebar-link{
+    white-space: nowrap;
     color: var(--bgprimary);
     padding: 0.5rem 2rem;
     display: inline;

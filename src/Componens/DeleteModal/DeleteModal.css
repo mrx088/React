@@ -41,3 +41,11 @@
 .btn-reject{
   background-color: red;
 }
+
+
+@media screen and (max-width:1040px) {
+  .del-modal{
+      width: auto;
+  }
+  
+}

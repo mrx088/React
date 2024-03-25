@@ -2,8 +2,15 @@ import { Routes } from './Routes';
 import './App.css';
 import { useRoutes } from 'react-router-dom';
 import Slidebar from './Componens/Slidebar/Slidebar';
+import MobileNav from './Componens/MobileNav/MobileNav';
+import { useState } from 'react';
 function App() {
   let router = useRoutes(Routes)
+  const[ShowMobileSlidebar,setShowMobileSlidebar] = useState(false)
+
+  const HiddenMobileSlider = ()=>{
+    setShowMobileSlidebar(false)
+  }
   return (
 
     <>
@@ -14,7 +21,7 @@ function App() {
         <div className="main-head">
 
           <div className="user-container">
-            <i className="bi bi-list hamberger"></i>
+            <i className="bi bi-list hamberger" onClick={()=>setShowMobileSlidebar(preval=>!preval)}></i>
             <div className="user-img-card">
             <div className="user-img"></div>
             </div>
@@ -44,51 +51,8 @@ function App() {
 
 
 
-    <div className="sidebar-phone">
-      <div className="close-slider">
-        <i className="bi bi-x"></i>
-        
-      </div>
-        <ul>
-          <li>
-            <i className="bi bi-house"></i>
-            <a href="" className="">داشبورد</a>
+    <MobileNav show={ShowMobileSlidebar} onHide={HiddenMobileSlider}></MobileNav>
 
-          </li>
-          <li>
-            <i className="bi bi-bag"></i>
-            <a href="" className="">محصولات</a>
-
-
-          </li>
-          <li>
-            <i className="bi bi-plus-lg"></i>
-            <a href="" className="">اضاقه کردن</a>
-
-
-          </li>
-          <li>
-            <i className="bi bi-chat-dots"></i>
-            <a href="" className="">درخواست ها</a>
-
-
-          </li>
-          <li>
-            <i className="bi bi-gear"></i>
-            <a href="" className="">تنظیمات</a>
-
-
-          </li>
-          <li>
-            <i className="bi bi-info-circle"></i>
-            <a href="" className="">راهنما</a>
-
-
-          </li>
-        </ul>
-
-
-    </div>
     
     </>
 
