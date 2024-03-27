@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/React/static/css/main.e596b05a.css",
+    "main.js": "/React/static/js/main.f282272c.js",
+    "static/media/Vazir.eot": "/React/static/media/Vazir.04fa21193336c3e1fa98.eot",
+    "static/media/about-img.jpg": "/React/static/media/about-img.0928c99737ccd4fbc563.jpg",
+    "static/media/Vazir-Bold.woff": "/React/static/media/Vazir-Bold.cf91a7a6bcfa78aad306.woff",
+    "static/media/Vazir.woff": "/React/static/media/Vazir.a30b9598c58099f1584c.woff",
+    "static/media/Vazir-Bold.woff2": "/React/static/media/Vazir-Bold.06faa6ed072a10f151d8.woff2",
+    "static/media/Vazir.woff2": "/React/static/media/Vazir.0236d12799f12ebefd2d.woff2",
+    "index.html": "/React/index.html",
+    "main.e596b05a.css.map": "/React/static/css/main.e596b05a.css.map",
+    "main.f282272c.js.map": "/React/static/js/main.f282272c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e596b05a.css",
+    "static/js/main.f282272c.js"
+  ]
+}
