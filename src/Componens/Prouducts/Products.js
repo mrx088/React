@@ -38,14 +38,14 @@ export default function Products() {
 
   const GetProducts= ()=>{
 
-    fetch('http://unknown88.pythonanywhere.com/products/')
+    fetch('https://unknown88.pythonanywhere.com/products/')
     .then(res=>res.json())
     .then(data=>setAllProducts(data))
   }
 
 
   const submitAction = ()=>{
-    fetch(`http://unknown88.pythonanywhere.com/product/delete/${id}`,{
+    fetch(`https://unknown88.pythonanywhere.com/product/delete/${id}`,{
       method:'DELETE'
     }).then(res=>res.json())
     .then(()=>{
@@ -91,7 +91,7 @@ export default function Products() {
       sale:Number(sale)
     }
 
-    fetch(`http://unknown88.pythonanywhere.com/product/${id}/`,{
+    fetch(`https://unknown88.pythonanywhere.com/product/${id}/`,{
       method : 'PUT',
       headers:{
         "Content-Type":"application/json",
@@ -124,7 +124,7 @@ export default function Products() {
       sale:Number(newSale),
     }
 
-    fetch('http://unknown88.pythonanywhere.com/product/create/',{
+    fetch('https://unknown88.pythonanywhere.com/product/create/',{
       method:"POST",
       headers :{
         'Content-Type':'application/json'
@@ -203,7 +203,7 @@ export default function Products() {
               return(
                 <tr key={product.id} className='table-row-products'>
                   <td>
-                    <img src={product.image?(`http://unknown88.pythonanywhere.com/${product.image}`):("./Image/empty.jpg")} alt=""  className='table-img'/>
+                    <img src={product.image?(`https://unknown88.pythonanywhere.com/${product.image}`):("./Image/empty.jpg")} alt=""  className='table-img'/>
                   </td>
                   <td>{product.title}</td>
                   <td>{product.price} تومان</td>
